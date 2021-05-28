@@ -1,0 +1,53 @@
+/* general styling */
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* header */
+header {
+  height: 100px;
+  /* not working */
+  /* border-color: aqua;
+  border-width: 10px; */
+}
+
+header img {
+  margin: 20px;
+  float: left;
+}
+
+header h1 {
+  line-height: 90px;
+  font-size: 2em;
+}
+
+#results {
+  margin-left: 50px;
+  border: black;
+  border-width: 5px;
+  width: 200px;
+  /* height: 450px; */
+}
+
+#results li {
+  list-style: disc;
+}
+
+main img {
+  margin-top: 5px;
+  margin-left: 5px;
+  float: left;
+}
+
+main img:first-child {
+  margin-left: 15px;
+}
+
+#empty p {
+  width: 960px;
+}
+
+section p {
+  width: 600px;
+  margin: 200px;
+}
