@@ -3,26 +3,25 @@
 // global varibales
 let allProducts = [];
 let clicks = 0;
-let clicksAllowed = 25;
+let clicksAllowed = 5;
 let sameNumbers = [];
 
 // accessing the DOM
 let myContainer = document.querySelector('section');
 let myButton = document.querySelector('div');
+let myAside = document.querySelector('aside ul');
 let imageOne = document.querySelector('section img:first-child');
 let imageTwo = document.querySelector('section img:nth-child(2)');
 let imageThree = document.querySelector('section img:last-child');
 
 // constructor
-function Product(name, fileExtension = 'jpg',) {
+function Product(name, fileExtension = 'jpg') {
   this.name = name;
   this.src = `img/${name}.${fileExtension}`;
   this.clicks = 0;
   this.views = 0;
   allProducts.push(this);
 }
-
-
 
 // new instances
 new Product('bag');
@@ -48,9 +47,9 @@ new Product('wine-glass');
 
 // assets
 
-imageOne.src = 'img/bag.jpg';
-imageTwo.src = 'img/banana.jpg';
-imageThree.src = 'img/bathroom.jpg';
+// imageOne.src = 'img/bag.jpg';
+// imageTwo.src = 'img/banana.jpg';
+// imageThree.src = 'img/bathroom.jpg';
 // imageFour.src = 'img/boots.jpg';
 // imageFive.src = 'img/breakfast.jpg';
 // imageSix.src = 'img/bubblegum.jpg';
@@ -90,10 +89,45 @@ function renderProducts() {
   let productTwo = sameNumbers[1];
   let productThree = sameNumbers[2];
   imageOne.src = allProducts[productOne].src;
+  imageOne.alt = allProducts[productOne].name;
+  allProducts[productOne].views++;
   imageTwo.src = allProducts[productTwo].src;
+  imageTwo.alt = allProducts[productThree].name;
+  allProducts[productTwo].views++;
   imageThree.src = allProducts[productThree].src;
-  allProducts()
+  imageThree.alt = allProducts[productThree].name;
+  allProducts[productThree].views++;
 }
 
+function clickHandler(event) {
+  clicks++;
+  let imageClicked = event.target.title;
+  if (imageClicked === 'imageOne'){
+    allProducts[sameNumbers[0]].clicks++;
+  }
+  if (imageClicked === 'imageTwo'){
+    allProducts[sameNumbers[1]].clicks++;
+  }
+  if (imageClicked === 'imageThree'){
+    allProducts[sameNumbers[2]].clicks++;
+  }
+  sameNumbers = sameNumbers.slice(3,6);
+  if (clicks === clicksAllowed) {
+    myContainer.removeEventListener('click', clickHandler);
+    myButton.addEventListener('click', resultHandler);
+  }
+  renderProducts();
+}
+
+function resultHandler() {
+  for (let i = 0; i < allProducts.length; i++) {
+    let li = document.createElement('li');
+    li.textContent = `${allProducts[i].name} had ${allProducts[i].clicks} votes, and was seen ${allProducts[i].views} times.`;
+    myAside.appendChild(li);
+  }
+  myButton.removeEventListener('click', resultHandler);
+}
 
 renderProducts();
+
+myContainer.addEventListener('click', clickHandler);
