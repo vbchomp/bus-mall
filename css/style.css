@@ -1,6 +1,7 @@
 /* general styling */
 body {
   font-family: Arial, Helvetica, sans-serif;
+  width: 960px;
 }
 
 /* header */
@@ -23,21 +24,30 @@ header h1 {
 
 main {
   display: grid;
-  grid-template-columns: 2fr 6fr;
+  grid-template-columns: 200px auto;
 }
 
 aside {
   background-color: lavender;
   height: 550px;
   margin-left: 20px;
-  width: max-content;
+  width: 130px;
   border: black;
   border-width: 5px;
+  grid-column-start: 1;
+  grid-column-end: 2;
   padding: 25px;
+  overflow: scroll;
+}
+
+aside ul {
+  margin-top: 10px;
 }
 
 aside li {
   list-style: disc;
+  margin-bottom: 10px;
+
 }
 
 h3 {
@@ -51,15 +61,18 @@ section {
   background-color: bisque;
   width: max-content;
   height: max-content;
-  margin: auto;
-  margin-left: 20px;
+  /* margi: auto; */
+  /* margin-left: 20px; */
 }
 
-section figure {
-  width: calc(100%-90px);
+section img {
+  width: 200px;
+  height: 200px;
+  /* width: calc(100%-90px); */
   margin: 10px;
   padding: 8px;
   float: left;
+  cursor: pointer;
 }
 
 main div {
