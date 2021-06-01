@@ -3,7 +3,7 @@
 // global varibales
 let allProducts = [];
 let clicks = 0;
-let clicksAllowed = 5;
+let clicksAllowed = 25;
 let sameNumbers = [];
 
 // accessing the DOM
