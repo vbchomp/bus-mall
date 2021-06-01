@@ -29,7 +29,7 @@ main {
 
 aside {
   background-color: lavender;
-  height: 550px;
+  height: 500px;
   margin-left: 20px;
   width: 130px;
   border: black;
@@ -50,14 +50,10 @@ aside li {
 
 }
 
-h3 {
-  font-size: 1.5em;
-  text-align: center;
-}
-
 section {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: minmax(1);
   background-color: bisque;
   width: max-content;
   height: max-content;
@@ -75,6 +71,16 @@ section img {
   cursor: pointer;
 }
 
+section article {
+  height: 35px;
+  width: max-content;
+}
+
+h3 {
+  font-size: 2em;
+  justify-content: center;
+}
+
 main div {
   background-color: plum;
   width: max-content;
@@ -87,8 +93,3 @@ main div:hover {
   cursor: pointer;
 }
 
-article p {
-  display: grid;
-  grid-template-columns: 1fr;
-  height: 200px;
-}
