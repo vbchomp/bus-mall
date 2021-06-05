@@ -9,7 +9,7 @@ let sameNumbers = [];
 // accessing the DOM
 let myContainer = document.querySelector('section');
 let myButton = document.querySelector('div');
-let myAside = document.querySelector('aside ul');
+// let myAside = document.querySelector('aside ul');
 let imageOne = document.querySelector('section img:first-child');
 let imageTwo = document.querySelector('section img:nth-child(2)');
 let imageThree = document.querySelector('section img:last-child');
@@ -24,49 +24,33 @@ function Product(name, fileExtension = 'jpg') {
   allProducts.push(this);
 }
 
-// new instances
-new Product('bag');
-new Product('banana');
-new Product('bathroom');
-new Product('boots');
-new Product('breakfast');
-new Product('bubblegum');
-new Product('chair');
-new Product('cthulhu');
-new Product('dog-duck');
-new Product('dragon');
-new Product('pen');
-new Product('pet-sweep');
-new Product('scissors');
-new Product('shark');
-new Product('sweep', 'png');
-new Product('tauntaun');
-new Product('unicorn');
-new Product('water-can');
-new Product('wine-glass');
-
-
-// assets
-
-// imageOne.src = 'img/bag.jpg';
-// imageTwo.src = 'img/banana.jpg';
-// imageThree.src = 'img/bathroom.jpg';
-// imageFour.src = 'img/boots.jpg';
-// imageFive.src = 'img/breakfast.jpg';
-// imageSix.src = 'img/bubblegum.jpg';
-// imageSeven.src = 'img/chair.jpg';
-// imageEight.src = 'img/cthulhu.jpg';
-// imageNine.src = 'img/dog-duck.jpg';
-// imageTen.src = 'img/dragon.jpg';
-// imageEleven.src = 'img/pen.jpg';
-// imageTwelve.src = 'img/pet-sweep.jpg';
-// imageThirteen.src = 'img/scissors.jpg';
-// imageFourteen.src = 'img/shark.jpg';
-// imageFifteen.src = 'img/sweep.jpg';
-// imageSixteen.src = 'img/tauntaun.jpg';
-// imageSeventeen.src = 'img/unicorn.jpg';
-// imageEighteen.src = 'img/water-can.jpg';
-// imageNineteen.src = 'img/wine-glass.jpg';
+// retrieve storage if exists or instantiate objects if does not.
+let retrievedProducts = localStorage.getItem('allProducts');
+if (retrievedProducts) {
+  let parsedProducts = JSON.parse(retrievedProducts);
+  allProducts = parsedProducts;
+} else {
+  // new instances
+  new Product('bag');
+  new Product('banana');
+  new Product('bathroom');
+  new Product('boots');
+  new Product('breakfast');
+  new Product('bubblegum');
+  new Product('chair');
+  new Product('cthulhu');
+  new Product('dog-duck');
+  new Product('dragon');
+  new Product('pen');
+  new Product('pet-sweep');
+  new Product('scissors');
+  new Product('shark');
+  new Product('sweep', 'png');
+  new Product('tauntaun');
+  new Product('unicorn');
+  new Product('water-can');
+  new Product('wine-glass');
+}
 
 // function to select random numbers between 0 and 18, the numbers of the product images in the allProducts array
 function selectRandomProductIndex() {
@@ -117,54 +101,41 @@ function clickHandler(event) {
   if (clicks === clicksAllowed) {
     myContainer.removeEventListener('click', clickHandler);
     myButton.addEventListener('click', resultHandler);
+    let stringifiedProducts = JSON.stringify(allProducts);
+    localStorage.setItem('allProducts', stringifiedProducts);
   }
   renderProducts();
 }
 
 // function for pushing products as strings into labels for chart.js
-function productsForChart() {
+// function productsForChart() {
+function resultHandler() {
   let productNames = [];
-  for (let i = 0; i < allProducts.length; i++) {
-    productNames.push(allProducts[i].name);
-  }
-  return productNames;
-}
-
-// function to put views into chart
-function viewsForChart() {
   let productViews = [];
-  for (let i = 0; i < allProducts.length; i++) {
-    productViews.push(allProducts[i].views);
-  }
-  return productViews;
-}
-
-// function to put clicks into chart
-function clicksForChart() {
   let productClicks = [];
   for (let i = 0; i < allProducts.length; i++) {
+    productNames.push(allProducts[i].name);
+    productViews.push(allProducts[i].views);
     productClicks.push(allProducts[i].views);
   }
-  return productClicks;
-}
 
-// function to create each product with the views and clicks in the aside.
-// added the chart.js to chart the results of the clicks/views.
-function resultHandler() {
+  // function to create each product with the views and clicks in the aside.
+  // added the chart.js to chart the results of the clicks/views.
+  // function resultHandler() {
   // console.log('resultHandler');
-  for (let i = 0; i < allProducts.length; i++) {
-    let li = document.createElement('li');
-    li.textContent = `${allProducts[i].name} had ${allProducts[i].clicks} votes, and was seen ${allProducts[i].views} times.`;
-    myAside.appendChild(li);
-  }
+  // for (let i = 0; i < allProducts.length; i++) {
+  //   let li = document.createElement('li');
+  //   li.textContent = `${allProducts[i].name} had ${allProducts[i].clicks} votes, and was seen ${allProducts[i].views} times.`;
+  //   myAside.appendChild(li);
+  // }
   myButton.removeEventListener('click', resultHandler);
   let myChart = new Chart(ctx, {
     type: 'bar',
     data: {
-      labels: productsForChart(),
+      labels: productNames,
       datasets: [{
         label: '# of Views',
-        data: viewsForChart(),
+        data: productViews,
         backgroundColor: 'rgba(54, 162, 235, 0.2)',
         borderColor: 'rgba(54, 162, 235, 1)',
         borderWidth: 2,
@@ -172,7 +143,7 @@ function resultHandler() {
         hoverBorderColor: 'rgba(153, 102, 255, 1)'
       }, {
         label: '# of Clicks',
-        data: clicksForChart(),
+        data: productClicks,
         backgroundColor: 'rgba(255, 159, 64, 0.2)',
         borderColor: 'rgba(255, 159, 64, 1)',
         borderWidth: 2,

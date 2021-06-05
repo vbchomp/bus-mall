@@ -2,6 +2,7 @@
 body {
   font-family: Arial, Helvetica, sans-serif;
   width: 960px;
+  background-color: lavender;
 }
 
 /* header */
@@ -23,10 +24,10 @@ header h1 {
   font-size: 2em;
 }
 
-main {
+/* main {
   display: grid;
   grid-template-columns: 200px auto;
-}
+} */
 
 article {
   /* margin-left: 20px;  */
@@ -36,7 +37,7 @@ article {
   margin-bottom: 20px;
 }
 
-aside {
+/* aside {
   background-color: lavender;
   height: 186px;
   margin-left: 20px;
@@ -57,7 +58,7 @@ aside li {
   list-style: disc;
   margin-bottom: 10px;
 
-}
+} */
 
 section {
   display: grid;
@@ -82,6 +83,12 @@ section img {
 
 section article {
   height: 35px;
+  width: max-content;
+}
+
+p {
+  /* clear: both; */
+  overflow: hidden;
   width: max-content;
 }
 
