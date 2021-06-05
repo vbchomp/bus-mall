@@ -8,6 +8,7 @@
 
 - Heather Bisgaard, Software Engineer
 - Willem Jacobs
+- Paul O'Brien (TA)
 
 ### References
 
