@@ -12,12 +12,13 @@ header {
   border-width: 10px; */
 }
 
-header img {
+/* header img {
   margin: 20px;
   float: left;
-}
+} */
 
 header h1 {
+  margin-left: 20px;
   line-height: 90px;
   font-size: 2em;
 }
@@ -27,9 +28,17 @@ main {
   grid-template-columns: 200px auto;
 }
 
+article {
+  /* margin-left: 20px;  */
+  background-color: aqua;
+  width: 708px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
 aside {
   background-color: lavender;
-  height: 500px;
+  height: 186px;
   margin-left: 20px;
   width: 130px;
   border: black;
@@ -86,10 +95,18 @@ main div {
   width: max-content;
   padding: 10px;
   border-radius: 10px;
-  margin: auto;
+  margin-left: 20px;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 
 main div:hover {
   cursor: pointer;
 }
+
+/* #myChart {
+  width: 450px;
+  height: 400px;
+} */
+
 

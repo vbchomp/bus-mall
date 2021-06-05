@@ -13,6 +13,7 @@ let myAside = document.querySelector('aside ul');
 let imageOne = document.querySelector('section img:first-child');
 let imageTwo = document.querySelector('section img:nth-child(2)');
 let imageThree = document.querySelector('section img:last-child');
+let ctx = document.getElementById('myChart').getContext('2d');
 
 // constructor
 function Product(name, fileExtension = 'jpg') {
@@ -82,7 +83,7 @@ function selectUniqueProductNumbers() {
   }
 }
 
-// function to assign a product image the latest unique number and push to the allProducts array and increments the views each product receives. 
+// function to assign a product image the latest unique number and push to the allProducts array and increments the views each product receives.
 function renderProducts() {
   selectUniqueProductNumbers();
   let productOne = sameNumbers[0];
@@ -99,19 +100,20 @@ function renderProducts() {
   allProducts[productThree].views++;
 }
 
+// function to count the clicks generated for each imageOne, Two or Three of the sameNumbers array. Then it takes those 3 images out of the array and stops allowing clicks when the clicksAllowed is reached.
 function clickHandler(event) {
   clicks++;
   let imageClicked = event.target.title;
-  if (imageClicked === 'imageOne'){
+  if (imageClicked === 'imageOne') {
     allProducts[sameNumbers[0]].clicks++;
   }
-  if (imageClicked === 'imageTwo'){
+  if (imageClicked === 'imageTwo') {
     allProducts[sameNumbers[1]].clicks++;
   }
-  if (imageClicked === 'imageThree'){
+  if (imageClicked === 'imageThree') {
     allProducts[sameNumbers[2]].clicks++;
   }
-  sameNumbers = sameNumbers.slice(3,6);
+  sameNumbers = sameNumbers.slice(3, 6);
   if (clicks === clicksAllowed) {
     myContainer.removeEventListener('click', clickHandler);
     myButton.addEventListener('click', resultHandler);
@@ -119,13 +121,74 @@ function clickHandler(event) {
   renderProducts();
 }
 
+// function for pushing products as strings into labels for chart.js
+function productsForChart() {
+  let productNames = [];
+  for (let i = 0; i < allProducts.length; i++) {
+    productNames.push(allProducts[i].name);
+  }
+  return productNames;
+}
+
+// function to put views into chart
+function viewsForChart() {
+  let productViews = [];
+  for (let i = 0; i < allProducts.length; i++) {
+    productViews.push(allProducts[i].views);
+  }
+  return productViews;
+}
+
+// function to put clicks into chart
+function clicksForChart() {
+  let productClicks = [];
+  for (let i = 0; i < allProducts.length; i++) {
+    productClicks.push(allProducts[i].views);
+  }
+  return productClicks;
+}
+
+// function to create each product with the views and clicks in the aside.
+// added the chart.js to chart the results of the clicks/views.
 function resultHandler() {
+  // console.log('resultHandler');
   for (let i = 0; i < allProducts.length; i++) {
     let li = document.createElement('li');
     li.textContent = `${allProducts[i].name} had ${allProducts[i].clicks} votes, and was seen ${allProducts[i].views} times.`;
     myAside.appendChild(li);
   }
   myButton.removeEventListener('click', resultHandler);
+  let myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: productsForChart(),
+      datasets: [{
+        label: '# of Views',
+        data: viewsForChart(),
+        backgroundColor: 'rgba(54, 162, 235, 0.2)',
+        borderColor: 'rgba(54, 162, 235, 1)',
+        borderWidth: 2,
+        hoverBackgroundColor: 'rgba(153, 102, 255, 0.2)',
+        hoverBorderColor: 'rgba(153, 102, 255, 1)'
+      }, {
+        label: '# of Clicks',
+        data: clicksForChart(),
+        backgroundColor: 'rgba(255, 159, 64, 0.2)',
+        borderColor: 'rgba(255, 159, 64, 1)',
+        borderWidth: 2,
+        hoverBackgroundColor: 'rgba(255, 206, 86, 0.2)',
+        hoverBorderColor: 'rgba(255, 206, 86, 1)'
+      }]
+    },
+    options: {
+      indexAxis: 'y',
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  });
 }
 
 renderProducts();
