@@ -136,26 +136,27 @@ function resultHandler() {
       datasets: [{
         label: '# of Views',
         data: productViews,
-        backgroundColor: 'rgba(54, 162, 235, 0.2)',
-        borderColor: 'rgba(54, 162, 235, 1)',
+        backgroundColor: '#f0ffff',
+        borderColor: '#e0ffff',
         borderWidth: 2,
-        hoverBackgroundColor: 'rgba(153, 102, 255, 0.2)',
+        hoverBackgroundColor: 'rgba(153, 102, 255, 0.6)',
         hoverBorderColor: 'rgba(153, 102, 255, 1)'
       }, {
         label: '# of Clicks',
         data: productClicks,
-        backgroundColor: 'rgba(255, 159, 64, 0.2)',
-        borderColor: 'rgba(255, 159, 64, 1)',
+        backgroundColor: '#800000',
+        borderColor: '#404040',
         borderWidth: 2,
-        hoverBackgroundColor: 'rgba(255, 206, 86, 0.2)',
+        hoverBackgroundColor: 'rgba(255, 206, 86, 0.6)',
         hoverBorderColor: 'rgba(255, 206, 86, 1)'
       }]
     },
     options: {
       indexAxis: 'y',
+      color: 'rgba(255, 255, 255, 1)',
       scales: {
         y: {
-          beginAtZero: true
+          beginAtZero: true,
         }
       }
     }
