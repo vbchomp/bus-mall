@@ -116,7 +116,7 @@ function resultHandler() {
   for (let i = 0; i < allProducts.length; i++) {
     productNames.push(allProducts[i].name);
     productViews.push(allProducts[i].views);
-    productClicks.push(allProducts[i].views);
+    productClicks.push(allProducts[i].clicks);
   }
 
   // function to create each product with the views and clicks in the aside.
