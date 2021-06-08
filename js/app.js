@@ -136,8 +136,8 @@ function resultHandler() {
       datasets: [{
         label: '# of Views',
         data: productViews,
-        backgroundColor: '#f0ffff',
-        borderColor: '#e0ffff',
+        backgroundColor: '#8ed6fa',
+        borderColor: '#8ed6fa',
         borderWidth: 2,
         hoverBackgroundColor: 'rgba(153, 102, 255, 0.6)',
         hoverBorderColor: 'rgba(153, 102, 255, 1)'

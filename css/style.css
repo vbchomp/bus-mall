@@ -68,7 +68,7 @@ section {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: minmax(1);
-  background-color: #cceeff;
+  background-color: #8ed6fa;
   width: max-content;
   height: max-content;
   margin-left: 20px;
@@ -120,6 +120,7 @@ main div:hover {
 #myChart {
   width: 960px;
   height: 400px;
+  /* background-color: lightgray; */
 }
 
 
