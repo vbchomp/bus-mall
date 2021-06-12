@@ -121,13 +121,6 @@ function resultHandler() {
 
   // function to create each product with the views and clicks in the aside.
   // added the chart.js to chart the results of the clicks/views.
-  // function resultHandler() {
-  // console.log('resultHandler');
-  // for (let i = 0; i < allProducts.length; i++) {
-  //   let li = document.createElement('li');
-  //   li.textContent = `${allProducts[i].name} had ${allProducts[i].clicks} votes, and was seen ${allProducts[i].views} times.`;
-  //   myAside.appendChild(li);
-  // }
   myButton.removeEventListener('click', resultHandler);
   let myChart = new Chart(ctx, {
     type: 'bar',

@@ -16,22 +16,12 @@ header {
 
 }
 
-/* header img {
-  margin: 20px;
-  float: left;
-} */
-
 header h1 {
   margin-left: 20px;
   line-height: 90px;
   font-size: 3em;
   font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
 }
-
-/* main {
-  display: grid;
-  grid-template-columns: 200px auto;
-} */
 
 article {
   /* margin-left: 20px;  */
@@ -40,29 +30,6 @@ article {
   margin-bottom: 20px;
   color: blanchedalmond;
 }
-
-/* aside {
-  background-color: lavender;
-  height: 186px;
-  margin-left: 20px;
-  width: 130px;
-  border: black;
-  border-width: 5px;
-  grid-column-start: 1;
-  grid-column-end: 2;
-  padding: 25px;
-  overflow: scroll;
-}
-
-aside ul {
-  margin-top: 10px;
-}
-
-aside li {
-  list-style: disc;
-  margin-bottom: 10px;
-
-} */
 
 section {
   display: grid;
